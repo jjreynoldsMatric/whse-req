@@ -1,0 +1,19 @@
+<h3>Open Requisitions</h3>
+<a routerLink="/completed-requisitions">Completed Requisitions</a>
+<table>
+  <thead>
+    <th>ID</th>
+    <th>Type</th>
+    <th>Requested On</th>
+    <th>By</th>
+    <th>Manage</th>
+  </thead>
+  <tbody *ngFor="let req of requisitions">
+    <td>{{req.id}}</td>
+    <td *ngIf="req.job.length == 0; ">Misc. Issue</td>
+    <td *ngIf="req.job.length != 0; ">Job Issue</td>
+    <td>{{req.dateRequestedOn | date:'shortDate'}}</td>
+    <td>{{req.submittedBy.empNum}} {{req.submittedBy.fname}} {{req.submittedBy.lname}}</td>
+    <td><button [routerLink]="['/manage']"></button></td>
+  </tbody>
+</table>

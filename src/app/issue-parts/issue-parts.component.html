@@ -1,0 +1,31 @@
+<h3>Issue Parts</h3>
+<p> Are you sure you want to issue parts? Choose your name/employee # and how many you are issuing.</p>
+<div>
+  <form #issuePartsForm="ngForm">
+    <div class="form-group">
+      <label for="employee">Employee</label>
+      <select class="form-control" id="employee" required [(ngModel)]="model.employee" name="employee">
+          <option *ngFor="let employee of employees" [value]="employee.id">
+              {{employee.id}} - {{employee.fname}} {{employee.lname}}
+          </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="quatity">Quantity</label>
+      <input type="number" id="quatity" [(ngModel)]="model.quatity">
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location</label>
+        <select class="form-control" id="location" required [(ngModel)]="model.location" name="location">
+            <option *ngFor="let location of req.locations" [value]="location">
+                {{location.rank}} {{location.location}} : {{location.qtyOnHand}}
+            </option>
+        </select>
+      </div>
+
+    <button class="btn btn-success">No</button>
+    <button type="submit" class="btn btn-success">Yes</button>
+
+  </form>
+</div>

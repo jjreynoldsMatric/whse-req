@@ -1,0 +1,41 @@
+<div>
+  <div *ngIf="req.job.length == 0; else elseBlock">
+    <h2>Miscellaneous Issue</h2>
+  </div>
+  <ng-template #elseBlock>
+    <h2>Job Material Issue</h2>
+  </ng-template>
+  <h2>Warehouse Requisition: {{req.id}}</h2>
+</div>
+<div>
+  <p>Submitted By: {{req.submittedBy.fname}} {{req.submittedBy.lname}}</p>
+  <div *ngIf="req.job.length != 0">{{req.job}}</div>
+</div>
+<table>
+  <thead>
+    <th>Matric Part Number</th>
+    <th>Quantity</th>
+    <th>Lot #</th>
+    <th>Resource Code</th>
+    <th>Operation</th>
+    <th>Filled</th>
+    <th>Locations</th>
+    <th></th>
+  </thead>
+  <tbody *ngFor="let item of req.items ">
+    <td>{{item.matricPN}}</td>
+    <td>{{item.quantityRequested}}</td>
+    <td>{{item.lotNum}}</td>
+    <td>{{item.reasonCode.code}}</td>
+    <td>{{item.operation}}</td>
+    <td>{{item.quantityFilled}}/{{item.quantityRequested}}</td>
+    <td>
+      <ul>
+        <li *ngFor="let location of item.locations">{{location.location}} {{location.rank}}</li>
+      </ul>
+    </td>
+    <td>
+      <button (click)="issueParts(item.matricPN)">Issue Parts</button>
+    </td>
+  </tbody>
+</table>
